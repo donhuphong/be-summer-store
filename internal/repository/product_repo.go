@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"stbe/internal/database"
-	"stbe/internal/model"
+	"be-summer-store/internal/database"
+	"be-summer-store/internal/model"
 )
 
 func GetAllProducts() ([]model.Product, error) {

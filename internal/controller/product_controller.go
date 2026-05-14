@@ -1,8 +1,8 @@
 package controller
 
 import (
+	"be-summer-store/internal/service"
 	"net/http"
-	"stbe/internal/service"
 
 	"github.com/gin-gonic/gin"
 )

@@ -1,5 +1,12 @@
 package main
 
+import (
+	"be-summer-store/internal/config"
+	"be-summer-store/internal/controller"
+	"be-summer-store/internal/database"
+
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
 	cfg := config.LoadConfig()

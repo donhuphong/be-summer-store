@@ -11,7 +11,7 @@ import (
 var DB *gorm.DB
 
 func InitDB(databaseDsn string) {
-	
+
 	// 4. Kết nối GORM
 	db, err := gorm.Open(postgres.Open(databaseDsn), &gorm.Config{})
 	if err != nil {

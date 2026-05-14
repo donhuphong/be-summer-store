@@ -1,8 +1,8 @@
 package service
 
 import (
-	"stbe/internal/model"
-	"stbe/internal/repository"
+	"be-summer-store/internal/model"
+	"be-summer-store/internal/repository"
 )
 
 func GetActiveProducts() ([]model.Product, error) {
