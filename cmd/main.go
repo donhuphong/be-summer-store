@@ -19,6 +19,8 @@ func main() {
 	api := r.Group("/api/v1")
 	{
 		api.GET("/products", controller.GetProducts)
+		api.GET("/presign",    controller.GetPresignURL)
+		api.POST("/products",  controller.CreateProduct)
 	}
 
 	r.Run(":" + cfg.Port)
