@@ -31,7 +31,8 @@ func GetPresignURL(ctx context.Context, key string) (*PresignResult, error) {
 	}
 
 	return &PresignResult{
-		URL:       req.URL,
-		PublicURL: database.PublicBaseURL + "/" + key,
+		URL: req.URL,
+		//PublicURL: database.PublicBaseURL + "/" + key,
+		PublicURL: "https://pub-b5b91ee94546441e9efcc8f03d17cb48.r2.dev/" + key,
 	}, nil
 }
