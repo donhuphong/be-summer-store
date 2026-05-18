@@ -1,6 +1,7 @@
 package database
 
 import (
+	"be-summer-store/internal/config"
 	"fmt"
 	"log"
 
@@ -10,10 +11,10 @@ import (
 
 var DB *gorm.DB
 
-func InitDB(databaseDsn string) {
+func InitDB() {
 
 	// 4. Kết nối GORM
-	db, err := gorm.Open(postgres.Open(databaseDsn), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open(config.AppConfig.DatabaseDSN), &gorm.Config{})
 	if err != nil {
 		log.Fatal("Connect Database failed: ", err)
 	}

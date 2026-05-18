@@ -7,6 +7,36 @@ import (
 
 func GetAllProducts() ([]model.Product, error) {
 	var products []model.Product
-	err := database.DB.Where("status = ?", "active").Order("created_at desc").Find(&products).Error
+
+	err := database.DB.
+		Where("status = ?", "active").
+		Order("created_at desc").
+		Find(&products).Error
+
 	return products, err
+}
+
+func GetProductByID(id uint) (*model.Product, error) {
+	var product model.Product
+
+	err := database.DB.
+		First(&product, id).Error
+
+	if err != nil {
+		return nil, err
+	}
+
+	return &product, nil
+}
+
+func InsertProduct(product *model.Product) error {
+	return database.DB.Create(product).Error
+}
+
+func UpdateProduct(product *model.Product) error {
+	return database.DB.Save(product).Error
+}
+
+func DeleteProduct(id uint) error {
+	return database.DB.Delete(&model.Product{}, id).Error
 }

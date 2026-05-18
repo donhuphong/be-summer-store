@@ -2,26 +2,19 @@ package main
 
 import (
 	"be-summer-store/internal/config"
-	"be-summer-store/internal/controller"
 	"be-summer-store/internal/database"
-
-	"github.com/gin-gonic/gin"
+	"be-summer-store/internal/router"
 )
 
 func main() {
-	cfg := config.LoadConfig()
-	database.InitDB(cfg.DatabaseDSN)
+	config.LoadConfig()
+
+	database.InitDB()
+	database.InitR2()
 
 	//database.DB.AutoMigrate(&model.Product{})
 
-	r := gin.Default()
+	r := router.SetupRouter()
 
-	api := r.Group("/api/v1")
-	{
-		api.GET("/products", controller.GetProducts)
-		api.GET("/presign",    controller.GetPresignURL)
-		api.POST("/products",  controller.CreateProduct)
-	}
-
-	r.Run(":" + cfg.Port)
+	r.Run(":" + config.AppConfig.Port)
 }
