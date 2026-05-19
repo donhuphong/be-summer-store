@@ -18,6 +18,7 @@ func SetupRouter() *gin.Engine {
 		api.POST("/refresh", controller.RefreshToken)
 
 		api.GET("/products", controller.GetProducts)
+		api.GET("/products-paging", controller.GetProductsPage)
 	}
 
 	// Private
@@ -25,6 +26,7 @@ func SetupRouter() *gin.Engine {
 	protected.Use(middleware.JWTAuthMiddleware())
 	{
 		protected.POST("/products", controller.CreateProduct)
+		protected.PUT("/products/:id", controller.UpdateProduct)
 		protected.GET("/presign", controller.GetPresignURL)
 	}
 

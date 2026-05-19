@@ -29,6 +29,30 @@ func GetProductByID(id uint) (*model.Product, error) {
 	return &product, nil
 }
 
+func GetProducts(page int, limit int) ([]model.Product, int64, error) {
+	var products []model.Product
+	var total int64
+
+	offset := (page - 1) * limit
+
+	// count total
+	if err := database.DB.Model(&model.Product{}).Count(&total).Error; err != nil {
+		return nil, 0, err
+	}
+
+	// get data
+	err := database.DB.
+		Limit(limit).
+		Offset(offset).
+		Find(&products).Error
+
+	if err != nil {
+		return nil, 0, err
+	}
+
+	return products, total, nil
+}
+
 func InsertProduct(product *model.Product) error {
 	return database.DB.Create(product).Error
 }
